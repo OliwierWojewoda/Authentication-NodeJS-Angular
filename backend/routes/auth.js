@@ -22,5 +22,10 @@ router.post(
        body('password').trim().not().isEmpty(),
     ],authController.signup
 );
+router.post(
+    '/signin', authController.signin
+)
+
+
 
 module.exports = router;
