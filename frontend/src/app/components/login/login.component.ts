@@ -23,7 +23,7 @@ export class LoginComponent {
        .subscribe({
         next: (tokenDetails) => {
           this.tokenDetails = tokenDetails;
-          localStorage.setItem("token",tokenDetails.token)
+          sessionStorage.setItem("token",tokenDetails.token)
           this.userLoggedIn$.next(true);
           console.log(this.userLoggedIn$)
         }

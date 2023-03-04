@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class DataComponent {
   isLoggedIn(){
-    if(localStorage.getItem("token")?.length==0)
+    if(sessionStorage.getItem("token")==null)
     {
       return false
     }
