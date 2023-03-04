@@ -5,8 +5,8 @@ const bcrypt = require('bcryptjs');
 const User = require('../models/user');
 
 exports.signup = async(req,res,next) => {
-    const errors = validationResult(req);
-
+    console.log(req.body)
+    const errors = validationResult(req);   
     if(!errors.isEmpty()) return;
 
     const name = req.body.name;
@@ -21,7 +21,7 @@ exports.signup = async(req,res,next) => {
             email: email,
             password: hashedPassword,
         }
-
+        console.log(userDetails)
         const result = await User.save(userDetails);
         
         res.status(201).json({message:'User registered'})
