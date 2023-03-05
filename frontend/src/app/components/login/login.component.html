@@ -1,4 +1,4 @@
-<form #form="ngForm" (ngSubmit)="signin()" >
+<form style="width:80%;" #form="ngForm" (ngSubmit)="signin()" >
         <div class="form-group">
           <label for="email">Email address</label>
           <input [(ngModel)]="user.email" name="email" type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
@@ -8,4 +8,7 @@
           <input [(ngModel)]="user.password" name="password" type="password" class="form-control" id="password" placeholder="Password">
         </div>
         <button type="submit" class="btn btn-primary" >Login</button>
+        <div *ngIf="failureMessage" class="alert alert-danger" role="alert">
+          Wrong email or password
+        </div>
 </form>

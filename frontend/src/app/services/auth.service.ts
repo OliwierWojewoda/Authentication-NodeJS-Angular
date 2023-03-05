@@ -27,17 +27,5 @@ export class AuthService {
     return this.http.post<tokenDetails>(this.urlsignin,JSON.stringify(user),this.httpOptions)
     .pipe(first(),catchError(this.errorHandlerService.handleError<tokenDetails>("signin")))
   }
-  // signin(email: Pick<User, "email">,password: Pick<User, "password">): Observable<{
-  //   token: string; userId:Pick<User,"id">}>
-  //   {
-  //   return this.http.post(this.urlsignin,{email,password},this.httpOptions)
-  //   .pipe(
-  //     first(),tap((tokenObject: {token: string; userId:Pick<User,"id">})=>{
-  //     this.userId = tokenObject.userId;
-  //     localStorage.setItem("token",tokenObject.token);
-  //     this.isUserLoggedIn$.next(true);
-  //   }),catchError(this.errorHandlerService.handleError<{
-  //     token: string; userId:Pick<User,"id">}>("signin")))
-  //   }
 }
 

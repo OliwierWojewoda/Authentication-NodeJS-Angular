@@ -11,12 +11,19 @@ import { AuthService } from 'src/app/services/auth.service';
 export class SignupComponent {
 
   newuser: User = new User()
+  failureMessage = false;
+
   constructor(private router: Router,private authService: AuthService){}
     ngOnInit() : void{}
 
      signup(user: User){
       this.authService.signup(this.newuser)
-       .subscribe((msg) => console.log(msg));
+       .subscribe({
+        next: (msg) => {
+          if(msg){ this.failureMessage = true }
+          this.failureMessage = false; 
+        }
+      });
       }
 }
 

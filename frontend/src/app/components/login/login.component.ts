@@ -3,7 +3,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/User';
 import { tokenDetails } from 'src/app/models/TokenDetails';
 import { AuthService } from 'src/app/services/auth.service';
-import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -14,18 +13,21 @@ export class LoginComponent {
 
   user: User = new User()
   tokenDetails = new tokenDetails()
-  userLoggedIn$ = new BehaviorSubject<boolean>(false)
+  userLoggedIn : boolean = false
+  failureMessage : boolean = false
+
   constructor(private router: Router,private authService: AuthService){}
     ngOnInit() : void{}
-
      signin(){
       this.authService.signin(this.user)
        .subscribe({
         next: (tokenDetails) => {
+          if(!tokenDetails){ this.failureMessage = true }
           this.tokenDetails = tokenDetails;
           sessionStorage.setItem("token",tokenDetails.token)
-          this.userLoggedIn$.next(true);
-          console.log(this.userLoggedIn$)
+          this.userLoggedIn = true;
+          this.failureMessage = false;
+          this.router.navigate(['data'])
         }
       });
       }

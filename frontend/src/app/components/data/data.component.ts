@@ -6,11 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./data.component.css']
 })
 export class DataComponent {
-  isLoggedIn(){
-    if(sessionStorage.getItem("token")==null)
-    {
-      return false
-    }
-    else{return true}
-  }
+  public isLoggedIn(){
+    if(sessionStorage.getItem("token")==null) return false
+    else return true
 }
+}
+
