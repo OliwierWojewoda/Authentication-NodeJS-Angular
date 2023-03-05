@@ -24,6 +24,7 @@ export class LoginComponent {
         next: (tokenDetails) => {
           if(!tokenDetails){ this.failureMessage = true }
           this.tokenDetails = tokenDetails;
+          console.log(tokenDetails);
           sessionStorage.setItem("token",tokenDetails.token)
           this.userLoggedIn = true;
           this.failureMessage = false;
