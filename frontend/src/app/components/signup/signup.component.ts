@@ -17,12 +17,11 @@ export class SignupComponent {
     ngOnInit() : void{}
 
      signup(user: User){
-      this.authService.signup(this.newuser)
+      this.authService.signup(this.newuser).pipe()
        .subscribe({
-        next: (msg) => {
-          if(msg){ this.failureMessage = true }
-          this.failureMessage = false; 
-        }
+        next: (msg) => {console.log(msg)
+          this.router.navigate(['login'])
+        }  
       });
       }
 }
