@@ -17,10 +17,13 @@ export class SignupComponent {
     ngOnInit() : void{}
 
      signup(user: User){
-      this.authService.signup(this.newuser).pipe()
+      setTimeout( () => {this.failureMessage=true},1000)
+      this.authService.signup(this.newuser)
        .subscribe({
-        next: (msg) => {console.log(msg)
+        next: (msg) => {
+          console.log(msg)
           this.router.navigate(['login'])
+          this.failureMessage = false
         }  
       });
       }
