@@ -1,5 +1,4 @@
 const { validationResult } = require('express-validator');
-
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const User = require('../models/user');
@@ -7,22 +6,17 @@ const User = require('../models/user');
 exports.signup = async(req,res,next) => {
     const errors = validationResult(req);   
     if(!errors.isEmpty()) return;
-
     const name = req.body.name;
     const email = req.body.email;
     const password = req.body.password;
-
     try{
         const hashedPassword = await bcrypt.hash(password, 8)
-
         const userDetails = {
             name: name,
             email: email,
             password: hashedPassword,
         }
-        console.log(userDetails)
-        const result = await User.save(userDetails);
-        
+        await User.save(userDetails);
         res.status(201).json({message:'User registered'})
     }
     catch(err){
@@ -33,7 +27,6 @@ exports.signup = async(req,res,next) => {
     }
 }
 exports.signin = async(req,res,next) => {
-
     try{
         const user = await User.find(req.body.email) 
         if(user[0].length !== 1){
